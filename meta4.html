@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meta 4</title>
+    <!-- it is only base on uniform alignments  -->
+    <style>
+      .container-1{
+        display: flex;              /* when we use display flex then only we can a use the flex properties */
+        flex-direction: column ;    /*by default its direction is row */
+        align-items: center;        /* Shift content to left or right & center when Coulumn (horizontally on X- AXIS ONLY)*/
+        margin: 20px;
+      }
+      .container-2{
+        display: flex;
+        justify-content: center;   /* Shift content when boxes are in rows (horizontally on X- AXIS ONLY)*/
+        
+        /*space-between: equal space only between the boxes
+          space-evenly:  equal space b/w page and boxes and b/w boxes and boxes
+          space-around: same space from start and end of page and same space b/w the boxes ,but boxes space != start-end space
+         */
+      }
+      .container-3{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; 
+        /* USE for shift the content according to the width of page (mobile veiws) */
+      }
+      .container-1 div, .container-2 div, .container-3 div{
+        background-color: rgba(82, 138, 138, 0.807);
+        border: 2px solid black;
+        padding: 20px;
+      }
+      .container-2-box{
+        flex-basis: 20%; /* take % occupies of space of width also similar to width: 20% */
+
+      }
+      .container-3-box{
+        flex-basis: 10%;
+      }
+    </style>
+
+
+
+</head>
+<body>
+  <div class="container-1">
+    <div class="box-1">
+      <h3>box1</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim illo odio provident,
+        nesciunt praesentium maxime necessitatibus consectetur, eaque, laudantium repellat
+        quasi.
+      </p>
+    </div>
+    <div class="box-2">
+      <h3>box2</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim illo odio provident,
+        nesciunt praesentium maxime necessitatibus consectetur, eaque, laudantium repellat
+        quasi.
+      </p>
+    </div>
+    <div class="box-3">
+      <h3>box3</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim illo odio provident,
+        nesciunt praesentium maxime necessitatibus consectetur, eaque, laudantium repellat
+        quasi.
+      </p>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="container-2">
+    <div class="container-2-box">
+      <h3>box4</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim illo odio provident,
+        nesciunt praesentium maxime necessitatibus consectetur, eaque, laudantium repellat
+        quasi.
+      </p>
+  </div>
+    <div class="container-2-box">
+      <h3>box5</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim illo odio provident,
+        nesciunt praesentium maxime necessitatibus consectetur, eaque, laudantium repellat
+        quasi.
+      </p>
+  </div>
+  <div class="container-2-box">
+      <h3>box6</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim illo odio provident,
+        nesciunt praesentium maxime necessitatibus consectetur, eaque, laudantium repellat
+        quasi.
+      </p>
+  </div>
+  </div>
+<br>
+
+
+
+
+
+
+  <div class="container-3">
+    <div class="container-3-box">
+      <h3>box7</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim illo odio provident,
+        nesciunt praesentium maxime necessitatibus consectetur, eaque, laudantium repellat
+        quasi.
+      </p>
+  </div>
+    <div class="container-3-box">
+      <h3>box8</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim illo odio provident,
+        nesciunt praesentium maxime necessitatibus consectetur, eaque, laudantium repellat
+        quasi.
+      </p>
+  </div>
+  <div class="container-3-box">
+    <h3>box9</h3>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim illo odio provident,
+      nesciunt praesentium maxime necessitatibus consectetur, eaque, laudantium repellat
+      quasi.
+    </p>
+</div>
+<div class="container-3-box">
+  <h3>box10</h3>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim illo odio provident,
+    nesciunt praesentium maxime necessitatibus consectetur, eaque, laudantium repellat
+    quasi.
+    </p>
+    </div>
+</div>
+</body>
+</html>

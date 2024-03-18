@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Example</title>
+    <style>
+        .con {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: #3366cc;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .row {
+            flex-direction: row;
+        }
+
+        .row-rev {
+            flex-direction: row-reverse;
+        }
+
+        .col {
+            flex-direction: column;
+        }
+
+        .col-rev {
+            flex-direction: column-reverse;
+        }
+
+        .wrap {
+            flex-wrap: wrap;
+            height: auto;
+        }
+
+        .start {
+            justify-content: flex-start;
+        }
+
+        .end {
+            justify-content: flex-end;
+        }
+
+        .center {
+            justify-content: center;
+        }
+
+        .space-between {
+            justify-content: space-between;
+        }
+
+        .space-around {
+            justify-content: space-around;
+        }
+
+        .top {
+            align-items: flex-start;
+        }
+
+        .bottom {
+            align-items: flex-end;
+        }
+
+        .baseline {
+            align-items: baseline;
+        }
+
+        .stretch {
+            align-items: stretch;
+        }
+    </style>
+</head>
+<body>
+    <div class="con row center">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+
+    <div class="con row-rev space-between">
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+    </div>
+
+    <div class="con col center">
+        <div class="box">7</div>
+        <div class="box">8</div>
+        <div class="box">9</div>
+    </div>
+
+    <div class="con col-rev space-around">
+        <div class="box">10</div>
+        <div class="box">11</div>
+        <div class="box">12</div>
+    </div>
+
+    <div class="con row wrap center">
+        <div class="box">13</div>
+        <div class="box">14</div>
+        <div class="box">15</div>
+        <div class="box">16</div>
+        <div class="box">17</div>
+        <div class="box">18</div>
+    </div>
+
+    <div class="con row start">
+        <div class="box">19</div>
+        <div class="box">20</div>
+        <div class="box">21</div>
+    </div>
+
+    <div class="con row-rev end baseline">
+        <div class="box" style="height: 50px;">22</div>
+        <div class="box" style="height: 100px;">23</div>
+        <div class="box" style="height: 150px;">24</div>
+    </div>
+
+    <div class="con row space-around stretch">
+        <div class="box">25</div>
+        <div class="box">26</div>
+        <div class="box">27</div>
+    </div>
+</body>
+</html>
