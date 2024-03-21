@@ -1,3 +1,4 @@
+// JAVA SCRIPT 
 var m=10
 let q=10
 const r=20
