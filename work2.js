@@ -1,4 +1,4 @@
-//Object  -->
+//Object 
 let data={
     name: "Abhay",
     age: 18,
