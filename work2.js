@@ -1,4 +1,4 @@
-//Object 
+//Object => key:pairs value
 let data={
     name: "Abhay",
     age: 18,
