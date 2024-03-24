@@ -15,7 +15,6 @@ console.log(x===y); // also check the datatype of that variable
 // Logical operator ( && , || , !)
 console.log(x&&y);
 
-// Logical operators with non boolean vallue (falsey)--> number ,none,undefined
-//   and  (truthy)--> string
+// Logical operators with non boolean vallue (falsey)--> number ,none,undefined and  (truthy)--> string
 
 //Bitwise(& , | , ^ , << , >> )
