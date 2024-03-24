@@ -11,5 +11,5 @@ funcName(true)
 prompt
 let pr=prompt("Enter your name:");
 
-//Alert method
+Alert method
 // alert("THIS IS GIVE A MESSAGE !")
