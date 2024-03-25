@@ -1,4 +1,5 @@
 //Function -> function defination
+// pascal case
 function maxArray(nameOfArray){
         let max = 0;
         for (let i = 0; i < arr1.length; i++) {
