@@ -12,10 +12,9 @@ let y=10
 console.log(x==y);
 console.log(x===y); // also check the datatype of that variable
 
-// Logical operator ( && , || , !)
+// Logical operator --> ( && , || , !)
 console.log(x&&y);
 
-// Logical operators with non boolean vallue (falsey)--> number ,none,undefined
-//   and  (truthy)--> string
+// Logical operators with non boolean vallue (falsey)--> number ,none,undefined and  (truthy)--> string
 
 //Bitwise(& , | , ^ , << , >> )
