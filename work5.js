@@ -14,6 +14,7 @@ function maxArray(nameOfArray){
         //desired output: 51
 
 //Object
+// dom manupulation 
 function creatReactangle(length , breadth)
 {
     return{length,
