@@ -1,3 +1,4 @@
+// fun()
 let circle={
     radius : 2,
     coordinate : {x:1,y:1},
