@@ -14,7 +14,7 @@ console.log(arr.length)
 console.log(arr) 
 console.log("THIS IS A 5TH ELEMENT:",arr[4]) 
 
-//ArrOfObject
+//ArrOfObject (Dict in python similar)
 let arrofobj=[{name: "Abhay",age: 18,occupation: "Developer",location: "Mathura",},
 {name: "Aditya",age: 18,occupation: "Developer",location: "Kashganj",},
 {name: "Ankur",age: 19,occupation: "Developer",location: "Rajisthan",}];

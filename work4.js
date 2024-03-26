@@ -5,7 +5,9 @@ l1[2]=4
 l1[4]=55
 console.log(l1.length);
 
+//Operators:
 
+//Arithematic operators: (+,-,/,*)
 //Comparision operator { == or != and === or !== and <,> >=,<=}
 let x='10'
 let y=10

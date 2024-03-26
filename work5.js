@@ -1,4 +1,5 @@
 //Function -> function defination
+// pascal case
 function maxArray(nameOfArray){
         let max = 0;
         for (let i = 0; i < arr1.length; i++) {
@@ -14,6 +15,7 @@ function maxArray(nameOfArray){
         //desired output: 51
 
 //Object
+// dom manupulation 
 function creatReactangle(length , breadth)
 {
     return{length,
