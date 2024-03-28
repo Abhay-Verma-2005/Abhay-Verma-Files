@@ -10,7 +10,6 @@ delete circle2.color
 
 let a1=100;
 let copy_a1=a1;
-
 //org obj is change with change in copy_obj (copy by reference)-->pointer(objects)
 let obj1={radius:10};
 let copy_obj1=obj1;
