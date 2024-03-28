@@ -7,7 +7,7 @@ circle2.draw=function(){
 }
 delete circle2.color
 
-//org variable is not change (copy by value)-->(primuitive dt)
+
 let a1=100;
 let copy_a1=a1;
 
