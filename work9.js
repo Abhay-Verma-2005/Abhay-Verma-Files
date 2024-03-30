@@ -18,10 +18,12 @@ var library = [
       price: 880
     }
   ];
+
   let listTit=[];
   for (let ele of library){
     listTit.push(ele.title);
   }
+
   console.log(listTit);
   for (let ele of library){
     if (ele.price >=500 && ele.price<=1000){
