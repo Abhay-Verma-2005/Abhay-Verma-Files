@@ -7,6 +7,7 @@ for (let i of a) {
     }
 }
 console.log(b);
+
 //PRINT SQUARE OF ELEMENT 
 a = [10, 12, 30, 4, 55, 7];
 for(let i=0 ; i < a.length ; i++){
