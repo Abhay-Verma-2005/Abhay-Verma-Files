@@ -9,7 +9,6 @@ for(let i=0 ; i < l.length ; i++){
     console.log(l[i] +" "+ i);
 }
 
-
 //MAX ELEMENT IN ARRAY
 a=[1,12,3,4,55,7];
 let x=a[0];
