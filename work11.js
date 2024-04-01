@@ -7,7 +7,6 @@ for (let i of a) {
         b.push(i);
     }
 }
-
 console.log(b);
 //PRINT SQUARE OF ELEMENT 
 a = [10, 12, 30, 4, 55, 7];
