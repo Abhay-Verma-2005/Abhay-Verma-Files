@@ -1,7 +1,6 @@
 // PRINT EVEN ELEMENT FROM ARRAY
 a = [10, 12, 30, 4, 55, 7];
 b = [];
-
 for (let i of a) {
     if (i % 2 == 0) {
         b.push(i);
