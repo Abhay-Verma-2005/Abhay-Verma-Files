@@ -1,3 +1,4 @@
+
 // PRINT EVEN ELEMENT FROM ARRAY
 a = [10, 12, 30, 4, 55, 7];
 b = [];
