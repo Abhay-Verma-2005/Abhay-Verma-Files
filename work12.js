@@ -1,4 +1,5 @@
 // Factorial
+
 let u = 6;
 let fact=1;
 while (u>0) {
