@@ -1,14 +1,14 @@
+
 // PRINT EVEN ELEMENT FROM ARRAY
 a = [10, 12, 30, 4, 55, 7];
 b = [];
-
 for (let i of a) {
     if (i % 2 == 0) {
         b.push(i);
     }
 }
-
 console.log(b);
+
 //PRINT SQUARE OF ELEMENT 
 a = [10, 12, 30, 4, 55, 7];
 for(let i=0 ; i < a.length ; i++){
