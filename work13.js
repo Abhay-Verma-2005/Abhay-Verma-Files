@@ -4,7 +4,6 @@ let b = 1;
 let c;
 console.log(a);
 for (let i = 1; i < 11; i++) {
-    
     console.log(b);
     c = a + b;
     a = b;
