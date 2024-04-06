@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOOT 2</title>
+<style>
+  
+  .side-menu {
+    height: 100%;
+    width: 0;
+    top: 0px;
+    right: 0px;
+    position: fixed;
+    background-color: #fade6e;
+    transition: 0.5s;
+    padding-top: 50px;
+    border: 1px solid black;
+    z-index: 1000;
+  }
+  
+  .side-menu a {
+    padding: 10px 15px;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    font-weight: 700;
+  }
+  
+  .side-menu a:hover {
+    color: #f1f1f1;
+  }
+  
+  .side-menu .close-btn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+</style>
+</head>
+<body>
+
+<button class="open-btn" onclick="openNav()">Open Menu</button><br><br>
+<button class="close-btn" onclick="closeNav()">Close Menu</button>
+
+
+<div id="mySideMenu" class="side-menu">
+  <a href="#">GO TO HOME</a>
+  <a href="#">GO TO PAGE 2</a>
+  <a href="#">GO TO PAGE 3</a>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySideMenu").style.width = "300px";
+}
+
+function closeNav() {
+  document.getElementById("mySideMenu").style.width = "0";
+}
+</script>
+
+</body>
+</html>
