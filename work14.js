@@ -10,6 +10,5 @@ function Vowels(str) {
     }
     return count;
 }
-
 const b = "Anant";
 console.log("Vowels:",Vowels(b));
