@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Item Adder</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    input[type="text"] {
+        width: 70%;
+    }
+</style>
+</head>
+<body>
+
+<h2>Item Adder</h2>
+
+<input type="text" id="new-task" placeholder="Enter a new task">
+<button onclick="addTodo()">Add Task</button>
+
+<ul id="todo-list">
+</ul>
+
+<script>
+
+    function addTodo() {
+
+        var newTaskInput = document.getElementById('new-task');
+
+        var text = newTaskInput.value.trim();
+        
+        if (text !== '') {
+
+            var listItem = document.createElement('li');
+            listItem.textContent = text;
+
+            var todoList = document.getElementById('todo-list');
+            todoList.appendChild(listItem);
+            newTaskInput.value = '';
+        }
+    }
+</script>
+
+</body>
+</html>
