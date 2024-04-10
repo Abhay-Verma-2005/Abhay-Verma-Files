@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>DOM JS-HTML</h2>
+
+<div id="content">
+  <p>THIS IS THE TEXT</p>
+</div>
+
+<p id="result"></p>
+
+<script>
+const container = document.getElementById("content");
+const paragraphs = container.getElementsByTagName("p");
+
+document.getElementById("result").innerHTML = 
+'The first paragraph (index 0) inside "content" is: ' + paragraphs[0].innerHTML;
+
+</script>
+
+</body>
+</html>
