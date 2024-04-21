@@ -4,7 +4,7 @@ const numbers1 = [1, 2, 3, -1, -2];
 const items = filtered.map((value) => {
   return "<li>" + value + "</li>";
 });
-
+ 
 console.log("items", items);
 
 const html = "<ul>" + items.join("") + "</ul>";
