@@ -102,7 +102,6 @@
 
 
 ## Binary Search and 2D Array
-
 | Problem Number | Problem Name | Difficulty | Acceptance Rate | URL |
 |----------------|--------------|------------|----------------|-----|
 | 704 | Binary Search to find X in sorted array | Easy | 54.50% | https://leetcode.com/problems/binary-search/ |
@@ -174,7 +173,7 @@
 | 37 | Sudoku Solver | Hard | 58.40% | https://leetcode.com/problems/sudoku-solver/ |
 | 282 | Expression Add Operators | Hard | 39.20% | https://leetcode.com/problems/expression-add-operators/ |
 
-##Sliding Window
+## Sliding Window
 | Problem Name | Difficulty | Platform | Problem # | URL | Notes | Revision |
 |-------------|------------|----------|-----------|-----|-------|----------|
 | Longest Substring Without Repeating Characters | Medium | LeetCode | 3 | https://leetcode.com/problems/longest-substring-without-repeating-characters/ | | |
