@@ -174,7 +174,22 @@
 | 37 | Sudoku Solver | Hard | 58.40% | https://leetcode.com/problems/sudoku-solver/ |
 | 282 | Expression Add Operators | Hard | 39.20% | https://leetcode.com/problems/expression-add-operators/ |
 
-
+##Sliding Window
+| Problem Name | Difficulty | Platform | Problem # | URL | Status | Notes | Revision |
+|-------------|------------|----------|-----------|-----|--------|-------|----------|
+| Longest Substring Without Repeating Characters | Medium | LeetCode | 3 | https://leetcode.com/problems/longest-substring-without-repeating-characters/ | ⬜ | | |
+| Max Consecutive Ones III | Medium | LeetCode | 1004 | https://leetcode.com/problems/max-consecutive-ones-iii/ | ⬜ | | |
+| Fruit Into Baskets | Medium | LeetCode | 904 | https://leetcode.com/problems/fruit-into-baskets/ | ⬜ | | |
+| Longest Repeating Character Replacement | Medium | LeetCode | 424 | https://leetcode.com/problems/longest-repeating-character-replacement/ | ⬜ | | |
+| Binary Subarrays With Sum | Easy | LeetCode | 930 | https://leetcode.com/problems/binary-subarrays-with-sum/ | ⬜ | | |
+| Count Number of Nice Subarrays | Medium | LeetCode | 1248 | https://leetcode.com/problems/count-number-of-nice-subarrays/ | ⬜ | | |
+| Number of Substrings Containing All Three Characters | Medium | LeetCode | 1358 | https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/ | ⬜ | | |
+| Maximum Points You Can Obtain from Cards | Medium | LeetCode | 1423 | https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/ | ⬜ | | |
+| **Lec 2: Hard Problems** |
+| Longest Substring with At Most K Distinct Characters | Medium | LeetCode | 340 (Premium) | https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/ | ⬜ | | |
+| Subarrays with K Different Integers | Hard | LeetCode | 992 | https://leetcode.com/problems/subarrays-with-k-different-integers/ | ⬜ | | |
+| Minimum Window Substring | Hard | LeetCode | 76 | https://leetcode.com/problems/minimum-window-substring/ | ⬜ | | |
+| Minimum Window Subsequence | Hard | LeetCode | 727 (Premium) | https://leetcode.com/problems/minimum-window-subsequence/ | ⬜ | | |
 
 ## Dynamic Programming
 | Problem # | Problem Name | Difficulty | Acceptance | URL |
