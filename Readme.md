@@ -191,6 +191,41 @@
 | Minimum Window Substring | Hard | LeetCode | 76 | https://leetcode.com/problems/minimum-window-substring/ | | |
 | Minimum Window Subsequence | Hard | LeetCode | 727 (Premium) | https://leetcode.com/problems/minimum-window-subsequence/ | | |
 
+
+##Linked List
+| Problem # | Problem Name | Difficulty | Acceptance | URL |
+|-----------|--------------|------------|------------|-----|
+| GFG | Introduction to Linked List | Easy | N/A | https://www.geeksforgeeks.org/linked-list-set-1-introduction/ |
+| GFG | Linked List Insertion | Easy | N/A | https://practice.geeksforgeeks.org/problems/linked-list-insertion-1587115620/1 |
+| LC 237 | Delete Node in a Linked List | Easy | 69.6% | https://leetcode.com/problems/delete-node-in-a-linked-list/ |
+| GFG | Count Nodes of Linked List | Easy | N/A | https://practice.geeksforgeeks.org/problems/count-nodes-of-linked-list/1 |
+| GFG | Search in a Linked List | Easy | N/A | https://practice.geeksforgeeks.org/problems/search-in-linked-list-1664434865/1 |
+| GFG | Introduction to Doubly Linked List | Easy | N/A | https://www.geeksforgeeks.org/doubly-linked-list/ |
+| GFG | Insert in Doubly Linked List | Easy | N/A | https://practice.geeksforgeeks.org/problems/insert-a-node-in-doubly-linked-list/1 |
+| GFG | Delete node in Doubly Linked List | Medium | N/A | https://practice.geeksforgeeks.org/problems/delete-node-in-doubly-linked-list/1 |
+| GFG | Reverse a Doubly Linked List | Medium | N/A | https://practice.geeksforgeeks.org/problems/reverse-a-doubly-linked-list/1 |
+| LC 876 | Middle of the Linked List | Easy | 76.6% | https://leetcode.com/problems/middle-of-the-linked-list/ |
+| LC 206 | Reverse Linked List | Easy | 72.4% | https://leetcode.com/problems/reverse-linked-list/ |
+| LC 141 | Linked List Cycle | Easy | 48.3% | https://leetcode.com/problems/linked-list-cycle/ |
+| LC 142 | Linked List Cycle II | Medium | 47.4% | https://leetcode.com/problems/linked-list-cycle-ii/ |
+| GFG | Find length of Loop | Easy | N/A | https://practice.geeksforgeeks.org/problems/find-length-of-loop/1 |
+| LC 234 | Palindrome Linked List | Easy | 48.7% | https://leetcode.com/problems/palindrome-linked-list/ |
+| LC 328 | Odd Even Linked List | Medium | 59.8% | https://leetcode.com/problems/odd-even-linked-list/ |
+| LC 19 | Remove Nth Node From End of List | Medium | 40.0% | https://leetcode.com/problems/remove-nth-node-from-end-of-list/ |
+| LC 2095 | Delete the Middle Node of a Linked List | Medium | 60.7% | https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/ |
+| LC 148 | Sort List | Medium | 53.9% | https://leetcode.com/problems/sort-list/ |
+| GFG | Given a linked list of 0s, 1s and 2s, sort it | Medium | N/A | https://practice.geeksforgeeks.org/problems/given-a-linked-list-of-0s-1s-and-2s-sort-it/1 |
+| LC 160 | Intersection of Two Linked Lists | Easy | 54.3% | https://leetcode.com/problems/intersection-of-two-linked-lists/ |
+| GFG | Add 1 to a number represented as linked list | Easy | N/A | https://practice.geeksforgeeks.org/problems/add-1-to-a-number-represented-as-linked-list/1 |
+| LC 2 | Add Two Numbers | Medium | 39.5% | https://leetcode.com/problems/add-two-numbers/ |
+| GFG | Delete all occurrences of a given key in a doubly linked list | Medium | N/A | https://practice.geeksforgeeks.org/problems/delete-all-occurrences-of-a-given-key-in-a-doubly-linked-list/1 |
+| GFG | Find pairs with given sum in doubly linked list | Medium | N/A | https://practice.geeksforgeeks.org/problems/find-pairs-with-given-sum-in-doubly-linked-list/1 |
+| GFG | Remove duplicates from a sorted doubly linked list | Medium | N/A | https://practice.geeksforgeeks.org/problems/remove-duplicates-from-a-sorted-doubly-linked-list/1 |
+| LC 25 | Reverse Nodes in k-Group | Hard | 52.9% | https://leetcode.com/problems/reverse-nodes-in-k-group/ |
+| LC 61 | Rotate List | Medium | 35.1% | https://leetcode.com/problems/rotate-list/ |
+| GFG | Flattening a Linked List | Hard | N/A | https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1 |
+| LC 138 | Copy List with Random Pointer | Medium | 51.1% | https://leetcode.com/problems/copy-list-with-random-pointer/ |
+
 ## Dynamic Programming
 | Problem # | Problem Name | Difficulty | Acceptance | URL |
 |-----------|--------------|------------|------------|-----|
