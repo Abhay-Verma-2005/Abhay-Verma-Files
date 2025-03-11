@@ -1,3 +1,14 @@
+# Coding blocks
+# Coding Contests 
+
+| Topic | Level | URL |
+|-------|-------|-----|
+| Arrays - Sorting | Easy-Medium | [https://hack.codingblocks.com/app/contests/6685](https://hack.codingblocks.com/app/contests/6685) |
+| 2D Arrays and Binary Search | Not Specified | [https://hack.codingblocks.com/app/contests/6926](https://hack.codingblocks.com/app/contests/6926) |
+| Strings | Not Specified | [https://hack.codingblocks.com/app/contests/6992](https://hack.codingblocks.com/app/contests/6992) |
+| Recursion - Backtracking | Not Specified | [https://hack.codingblocks.com/app/contests/7470](https://hack.codingblocks.com/app/contests/7470) |
+
+
 # LeetCode Problems by Topic
 
 ## Arrays
