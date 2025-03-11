@@ -48,7 +48,7 @@
 | 1710 | Maximum Units on a Truck | Easy | 73.60% | https://leetcode.com/problems/maximum-units-on-a-truck |
 | 1752 | Check if Array Is Sorted and Rotated | Easy | 49.60% | https://leetcode.com/problems/check-if-array-is-sorted-and-rotated |
 | 2104 | Sum of Subarray Ranges | Medium | 61.00% | https://leetcode.com/problems/sum-of-subarray-ranges |
-I'll add all the string problems from my previous list to your Excel sheet format, avoiding any duplicates with what you already have:
+
 
 ## Strings
 | Problem # | Problem Name | Difficulty | Acceptance | URL |
