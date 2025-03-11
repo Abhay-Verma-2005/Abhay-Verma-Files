@@ -16,7 +16,6 @@
 |-----------|--------------|------------|------------|-----|
 | 1 | Two Sum | Easy | 52.20% | https://leetcode.com/problems/two-sum |
 | 15 | 3Sum | Medium | 32.40% | https://leetcode.com/problems/3sum |
-| 18 | 4Sum | Medium | 36.10% | https://leetcode.com/problems/4sum |
 | 26 | Remove Duplicates from Sorted Array | Easy | 49.80% | https://leetcode.com/problems/remove-duplicates-from-sorted-array |
 | 31 | Next Permutation | Medium | 37.30% | https://leetcode.com/problems/next-permutation |
 | 48 | Rotate Image | Medium | 68.40% | https://leetcode.com/problems/rotate-image |
