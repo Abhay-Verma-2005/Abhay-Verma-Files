@@ -191,7 +191,7 @@
 | Minimum Window Subsequence | Hard | LeetCode | 727 (Premium) | https://leetcode.com/problems/minimum-window-subsequence/ | | |
 
 
-##Linked List
+## Linked List
 | Problem # | Problem Name | Difficulty | Acceptance | URL |
 |-----------|--------------|------------|------------|-----|
 | GFG | Introduction to Linked List | Easy | N/A | https://www.geeksforgeeks.org/linked-list-set-1-introduction/ |
