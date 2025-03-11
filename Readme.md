@@ -139,6 +139,40 @@
 | - | Matrix Median | - | - | https://www.interviewbit.com/problems/matrix-median/ |
 | 151 | Reverse Every Word in A String | - | 29.10% | https://leetcode.com/problems/reverse-words-in-a-string/ |
 
+## Greedy
+| Problem # | Problem Name | Difficulty | Acceptance | URL |
+|-----------|--------------|------------|------------|-----|
+| 435 | Non-overlapping Intervals | Medium | N/A | https://leetcode.com/problems/non-overlapping-intervals |
+| 1167 | Minimum Cost to Connect Sticks | Medium | 69.80% | https://leetcode.com/problems/minimum-cost-to-connect-sticks |
+| 1353 | Maximum Number of Events That Can Be Attended | Medium | 32.30% | https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended |
+| 2033 | Remove Colored Pieces if Both Neighbors are the Same Color | Medium | 62.80% | https://leetcode.com/problems/remove-colored-pieces-if-both-neighbors-are-the-same-color |
+
+## Recursion & Backtracking
+| Problem # | Problem Name | Difficulty | Acceptance | URL |
+|-----------|--------------|------------|------------|-----|
+| 50 | Pow(x, n) | Medium | 32.50% | https://leetcode.com/problems/powx-n/ |
+| 1922 | Count Good Numbers | Medium | 38.20% | https://leetcode.com/problems/count-good-numbers/ |
+| N/A | Recursive Implementation of atoi() | Hard | N/A | https://practice.geeksforgeeks.org/problems/implement-atoi/1 |
+| N/A | Sort a stack using recursion | Medium | N/A | https://practice.geeksforgeeks.org/problems/sort-a-stack/1 |
+| N/A | Reverse a stack using recursion | Easy | N/A | https://practice.geeksforgeeks.org/problems/reverse-a-stack/1 |
+| N/A | Generate all binary strings | Medium | N/A | https://practice.geeksforgeeks.org/problems/generate-all-binary-strings/1 |
+| 22 | Generate Parentheses | Medium | 74.40% | https://leetcode.com/problems/generate-parentheses/ |
+| 78 | Subsets (Print all subsequences/Power Set) | Medium | 74.10% | https://leetcode.com/problems/subsets/ |
+| N/A | Count all subsequences with sum K | Hard | N/A | https://practice.geeksforgeeks.org/problems/perfect-sum-problem5633/1 |
+| N/A | Check if there exists a subsequence with sum K | Medium | N/A | https://practice.geeksforgeeks.org/problems/subset-sum-problem-1611555638/1 |
+| 39 | Combination Sum | Medium | 71.20% | https://leetcode.com/problems/combination-sum/ |
+| 40 | Combination Sum II | Medium | 53.20% | https://leetcode.com/problems/combination-sum-ii/ |
+| 90 | Subsets II (Subset Sum-II) | Medium | 56.40% | https://leetcode.com/problems/subsets-ii/ |
+| 216 | Combination Sum III | Medium | 67.70% | https://leetcode.com/problems/combination-sum-iii/ |
+| 17 | Letter Combinations of a Phone Number | Medium | 58.10% | https://leetcode.com/problems/letter-combinations-of-a-phone-number/ |
+| 131 | Palindrome Partitioning | Medium | 63.50% | https://leetcode.com/problems/palindrome-partitioning/ |
+| 79 | Word Search | Medium | 40.20% | https://leetcode.com/problems/word-search/ |
+| 51 | N-Queens | Hard | 64.10% | https://leetcode.com/problems/n-queens/ |
+| N/A | Rat in a Maze | Hard | N/A | https://practice.geeksforgeeks.org/problems/rat-in-a-maze-problem/1 |
+| 139 | Word Break | Medium | 45.10% | https://leetcode.com/problems/word-break/ |
+| N/A | M Coloring Problem | Hard | N/A | https://practice.geeksforgeeks.org/problems/m-coloring-problem-1587115620/1 |
+| 37 | Sudoku Solver | Hard | 58.40% | https://leetcode.com/problems/sudoku-solver/ |
+| 282 | Expression Add Operators | Hard | 39.20% | https://leetcode.com/problems/expression-add-operators/ |
 
 
 
@@ -155,22 +189,6 @@
 | 752 | Open the Lock | Medium | 56.00% | https://leetcode.com/problems/open-the-lock |
 | 2503 | Maximum Number of Points From Grid Queries | Hard | N/A | https://leetcode.com/problems/maximum-number-of-points-from-grid-queries |
 
-## Greedy
-| Problem # | Problem Name | Difficulty | Acceptance | URL |
-|-----------|--------------|------------|------------|-----|
-| 435 | Non-overlapping Intervals | Medium | N/A | https://leetcode.com/problems/non-overlapping-intervals |
-| 1167 | Minimum Cost to Connect Sticks | Medium | 69.80% | https://leetcode.com/problems/minimum-cost-to-connect-sticks |
-| 1353 | Maximum Number of Events That Can Be Attended | Medium | 32.30% | https://leetcode.com/problems/maximum-number-of-events-that-can-be-attended |
-| 2033 | Remove Colored Pieces if Both Neighbors are the Same Color | Medium | 62.80% | https://leetcode.com/problems/remove-colored-pieces-if-both-neighbors-are-the-same-color |
-
-## Recursion & Backtracking
-| Problem # | Problem Name | Difficulty | Acceptance | URL |
-|-----------|--------------|------------|------------|-----|
-| 22 | Generate Parentheses | Medium | 74.40% | https://leetcode.com/problems/generate-parentheses |
-| 31 | Next Permutation | Medium | 39.70% | https://leetcode.com/problems/next-permutation |
-| 39 | Combination Sum | Medium | 71.20% | https://leetcode.com/problems/combination-sum |
-| 44 | Wildcard Matching | Hard | 27.80% | https://leetcode.com/problems/wildcard-matching |
-| 49 | Group Anagrams | Medium | 68.40% | https://leetcode.com/problems/group-anagrams |
 
 ## Trees
 | Problem # | Problem Name | Difficulty | Acceptance | URL |
