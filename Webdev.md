@@ -249,10 +249,455 @@ fetchData((data) => {
 
 ---
 
-## Common Interview Questions
+## 12. JavaScript Data Types
 
-1. **"Explain hoisting"** - Focus on TDZ difference between var and let/const
-2. **"What is closure?"** - Give practical example with counter function
-3. **"Difference between map and forEach"** - map returns new array, forEach doesn't
-4. **"What is callback hell?"** - Nested callbacks making code unreadable
-5. **"Explain event loop"** - Single-threaded JavaScript handling async operations
+### Primitive Types (7 types)
+1. **Number**: `let age = 25;`
+2. **String**: `let name = "John";`
+3. **Boolean**: `let isActive = true;`
+4. **Undefined**: `let x;` (not assigned any value)
+5. **Null**: `let data = null;` (intentionally empty)
+6. **Symbol**: `let sym = Symbol('id');`
+7. **BigInt**: `let big = 123n;`
+
+### Non-Primitive Types
+1. **Object**: `let person = {name: "John"};`
+2. **Array**: `let numbers = [1, 2, 3];`
+3. **Function**: `let greet = function() {};`
+
+**Interview Tip**: "Primitives are stored by value, objects are stored by reference."
+
+---
+
+## 13. Functions in JavaScript
+
+### Function Declaration
+```javascript
+function sayHello() {
+    console.log("Hello!");
+}
+sayHello(); // Can call before declaration (hoisted)
+```
+
+### Function Expression
+```javascript
+let sayHello = function() {
+    console.log("Hello!");
+};
+// sayHello(); // Cannot call before this line
+```
+
+### Arrow Functions
+```javascript
+let sayHello = () => {
+    console.log("Hello!");
+};
+
+// Short form for single expression
+let add = (a, b) => a + b;
+```
+
+**Key Differences**:
+- Function declarations are fully hoisted
+- Function expressions are not hoisted
+- Arrow functions don't have their own `this`
+
+---
+
+## 14. this Keyword
+
+### Simple Rule
+- **In regular function**: `this` depends on how function is called
+- **In arrow function**: `this` comes from parent scope
+- **In object method**: `this` refers to the object
+- **Global context**: `this` refers to window (browser) or global (Node.js)
+
+### Examples
+```javascript
+let person = {
+    name: "John",
+    greet: function() {
+        console.log(this.name); // "John"
+    },
+    greetArrow: () => {
+        console.log(this.name); // undefined (no own this)
+    }
+};
+```
+
+---
+
+## 15. Callback vs Promise vs Async/Await
+
+### Callback (Traditional way)
+```javascript
+function getData(callback) {
+    setTimeout(() => {
+        callback("Data received");
+    }, 1000);
+}
+
+getData((data) => {
+    console.log(data);
+});
+```
+
+### Promise (Better way)
+```javascript
+function getData() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Data received");
+        }, 1000);
+    });
+}
+
+getData().then(data => console.log(data));
+```
+
+### Async/Await (Easiest way)
+```javascript
+async function fetchData() {
+    let data = await getData();
+    console.log(data);
+}
+```
+
+---
+
+## 16. Array Methods (Complete List)
+
+### Mutating Methods (Change original array)
+- **push()**: Add to end
+- **pop()**: Remove from end
+- **shift()**: Remove from start
+- **unshift()**: Add to start
+- **splice()**: Add/remove at any position
+- **sort()**: Sort elements
+- **reverse()**: Reverse array
+
+### Non-Mutating Methods (Return new array)
+- **map()**: Transform each element
+- **filter()**: Keep elements that pass test
+- **reduce()**: Reduce to single value
+- **concat()**: Join arrays
+- **slice()**: Extract portion
+- **find()**: Find first matching element
+- **includes()**: Check if element exists
+
+```javascript
+let numbers = [1, 2, 3, 4, 5];
+
+// Map - transform each element
+let doubled = numbers.map(num => num * 2); // [2, 4, 6, 8, 10]
+
+// Filter - keep elements that pass test
+let evens = numbers.filter(num => num % 2 === 0); // [2, 4]
+
+// Reduce - combine into single value
+let sum = numbers.reduce((total, num) => total + num, 0); // 15
+```
+
+---
+
+## 17. Objects in JavaScript
+
+### Creating Objects
+```javascript
+// Object literal
+let person = {
+    name: "John",
+    age: 25,
+    greet: function() {
+        console.log("Hello!");
+    }
+};
+
+// Constructor function
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+let person2 = new Person("Jane", 30);
+
+// Object.create()
+let person3 = Object.create(person);
+```
+
+### Accessing Properties
+```javascript
+// Dot notation
+console.log(person.name);
+
+// Bracket notation
+console.log(person["name"]);
+console.log(person[variable]); // When property name is in variable
+```
+
+---
+
+## 18. Prototypes (Simple Explanation)
+
+### What is Prototype?
+Every object in JavaScript has a hidden property called prototype. It's like a parent object that shares its properties.
+
+```javascript
+function Person(name) {
+    this.name = name;
+}
+
+// Add method to prototype (shared by all instances)
+Person.prototype.greet = function() {
+    console.log("Hello, I'm " + this.name);
+};
+
+let john = new Person("John");
+let jane = new Person("Jane");
+
+john.greet(); // "Hello, I'm John"
+jane.greet(); // "Hello, I'm Jane"
+```
+
+**Simple Rule**: If JavaScript can't find a property in an object, it looks in its prototype.
+
+---
+
+## 19. Error Handling
+
+### Try-Catch-Finally
+```javascript
+try {
+    // Code that might cause error
+    let result = riskyOperation();
+    console.log(result);
+} catch (error) {
+    // Handle error
+    console.log("Something went wrong:", error.message);
+} finally {
+    // Always runs (optional)
+    console.log("Cleanup code");
+}
+```
+
+### Common Error Types
+- **SyntaxError**: Wrong code syntax
+- **ReferenceError**: Using undefined variable
+- **TypeError**: Wrong data type used
+- **RangeError**: Number out of range
+
+---
+
+## 20. Node.js Basics
+
+### What is Node.js?
+- JavaScript runtime outside browser
+- Uses V8 engine (same as Chrome)
+- Good for server-side applications
+- Single-threaded but handles many requests using event loop
+
+### Common Node.js Modules
+
+#### File System (fs)
+```javascript
+const fs = require('fs');
+
+// Read file
+fs.readFile('file.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+});
+```
+
+#### HTTP Module
+```javascript
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.end('Hello World!');
+});
+
+server.listen(3000);
+```
+
+#### Path Module
+```javascript
+const path = require('path');
+
+console.log(path.join('/users', 'john', 'documents')); // /users/john/documents
+```
+
+---
+
+## 21. Modules in Node.js
+
+### CommonJS (Traditional)
+```javascript
+// Export
+module.exports = {
+    add: (a, b) => a + b,
+    subtract: (a, b) => a - b
+};
+
+// Import
+const math = require('./math');
+console.log(math.add(2, 3));
+```
+
+### ES6 Modules (Modern)
+```javascript
+// Export
+export const add = (a, b) => a + b;
+export default subtract = (a, b) => a - b;
+
+// Import
+import { add } from './math.js';
+import subtract from './math.js';
+```
+
+---
+
+## 22. Package.json
+
+### What is it?
+Configuration file for Node.js projects containing:
+- Project information
+- Dependencies (libraries you need)
+- Scripts (commands to run)
+
+### Basic Structure
+```json
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "My awesome project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "npm test"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
+```
+
+---
+
+## 23. NPM (Node Package Manager)
+
+### Common Commands
+- **npm init**: Create new package.json
+- **npm install package-name**: Install package
+- **npm install**: Install all dependencies
+- **npm start**: Run start script
+- **npm run script-name**: Run custom script
+
+### Local vs Global Installation
+```bash
+npm install express          # Local (project only)
+npm install -g nodemon      # Global (system-wide)
+```
+
+---
+
+## 24. Express.js Basics
+
+### Simple Server
+```javascript
+const express = require('express');
+const app = express();
+
+// Route
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+// Start server
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
+});
+```
+
+### Middleware
+```javascript
+// Middleware function
+app.use((req, res, next) => {
+    console.log('Request received');
+    next(); // Pass to next middleware
+});
+
+// Built-in middleware
+app.use(express.json()); // Parse JSON requests
+```
+
+---
+
+## 25. Debugging in JavaScript
+
+### Console Methods
+```javascript
+console.log("Normal message");
+console.error("Error message");
+console.warn("Warning message");
+console.table([{name: "John", age: 25}]); // Display as table
+```
+
+### Debugger Statement
+```javascript
+function calculateSum(a, b) {
+    debugger; // Browser will pause here
+    return a + b;
+}
+```
+
+---
+
+## Super Easy Interview Questions & Answers
+
+### Beginner Level Questions
+
+**Q: What is JavaScript?**
+A: JavaScript is a programming language that makes websites interactive. It can run in browsers and servers (Node.js).
+
+**Q: What is a variable?**
+A: A variable is like a box that stores data. You can put different types of data like numbers, text, or true/false values.
+
+**Q: Difference between let, const, and var?**
+A: 
+- `var`: Old way, function-scoped, can be redeclared
+- `let`: New way, block-scoped, can be changed
+- `const`: New way, block-scoped, cannot be changed
+
+**Q: What is a function?**
+A: A function is a block of code that does a specific task. You can use it many times without writing the same code again.
+
+**Q: What is an array?**
+A: An array is like a list that can hold multiple values. Example: `[1, 2, 3, 4, 5]`
+
+**Q: What is an object?**
+A: An object is like a container that holds related information. Example: `{name: "John", age: 25}`
+
+**Q: What is callback?**
+A: A callback is a function that runs after another function finishes its work.
+
+**Q: What is Node.js?**
+A: Node.js lets you run JavaScript outside the browser, like on a server to build websites.
+
+**Q: What is npm?**
+A: npm is like an app store for JavaScript. It helps you download and use code libraries that others have written.
+
+**Q: What is Express?**
+A: Express is a tool that makes it easy to build web servers using Node.js.
+
+---
+
+## Memory Tricks for Interviews
+
+1. **Hoisting**: "Variables go up, but let/const stay locked until assigned"
+2. **Closure**: "Inner function remembers outer function's variables"
+3. **this keyword**: "Arrow functions borrow this from parent"
+4. **Callback**: "Call me back when you're done"
+5. **Promise**: "I promise to give you result later"
+6. **Array map**: "Transform each item"
+7. **Array filter**: "Keep only items that pass the test"
