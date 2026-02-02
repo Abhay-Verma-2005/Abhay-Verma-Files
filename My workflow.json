@@ -1,0 +1,1707 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "register-organizer",
+        "responseMode": "lastNode",
+        "options": {
+          "responseCode": {
+            "values": {}
+          }
+        }
+      },
+      "id": "6442a9b2-ba66-4350-b17b-59359a9fdbbe",
+      "name": "API - Event Organizer Registration",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        272,
+        128
+      ],
+      "webhookId": "01435f7c-7d6c-4f1a-8e3e-a86a0f57e2fd"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "id-1",
+              "name": "organizer_name",
+              "value": "={{ $json.body.name }}",
+              "type": "string"
+            },
+            {
+              "id": "id-2",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "id-3",
+              "name": "phone",
+              "value": "={{ $json.body.phone }}",
+              "type": "string"
+            },
+            {
+              "id": "id-4",
+              "name": "company_name",
+              "value": "={{ $json.body.company_name }}",
+              "type": "string"
+            },
+            {
+              "id": "id-5",
+              "name": "created_at",
+              "value": "={{ new Date().toISOString() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d3301ed4-41fd-4062-b0df-26f1cd5e1c17",
+      "name": "Workflow Configuration",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        496,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "name",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "name",
+          "value": "event_organizers"
+        },
+        "options": {}
+      },
+      "id": "0a79a257-a995-4850-ba7d-6dabcc7ba9f1",
+      "name": "Save Organizer Profile",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        720,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"message\": \"Organizer registered successfully\",\n  \"organizer_id\": {{ $json.id }}\n}",
+        "options": {}
+      },
+      "id": "d6374f36-ff18-49fb-ba11-60a5e049c930",
+      "name": "Return Registration Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        944,
+        128
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "create-event",
+        "responseMode": "lastNode",
+        "options": {
+          "responseCode": {
+            "values": {}
+          }
+        }
+      },
+      "id": "765e325b-a57f-4ab4-8c14-62466f8908f7",
+      "name": "API - Create Event",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        272,
+        796
+      ],
+      "webhookId": "c2ca455e-8884-4418-ab07-e7157a1c4295"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.creation_method }}",
+                    "rightValue": "manual",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Manual Entry"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.creation_method }}",
+                    "rightValue": "ai_prompt",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "AI Prompt"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "10b95098-74f4-4bd7-8e6b-2092928ab4e2",
+      "name": "Route by Creation Method",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        496,
+        796
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "id-1",
+              "name": "event_name",
+              "value": "={{ $json.body.event_name }}",
+              "type": "string"
+            },
+            {
+              "id": "id-2",
+              "name": "description",
+              "value": "={{ $json.body.description }}",
+              "type": "string"
+            },
+            {
+              "id": "id-3",
+              "name": "event_date",
+              "value": "={{ $json.body.event_date }}",
+              "type": "string"
+            },
+            {
+              "id": "id-4",
+              "name": "event_time",
+              "value": "={{ $json.body.event_time }}",
+              "type": "string"
+            },
+            {
+              "id": "id-5",
+              "name": "pricing",
+              "value": "={{ $json.body.pricing }}",
+              "type": "string"
+            },
+            {
+              "id": "id-6",
+              "name": "venue_type",
+              "value": "={{ $json.body.venue_type }}",
+              "type": "string"
+            },
+            {
+              "id": "id-7",
+              "name": "organizer_id",
+              "value": "={{ $json.body.organizer_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9bba8ca1-92f8-465d-8d24-8f6a2a77c78f",
+      "name": "Format Manual Event Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        784,
+        648
+      ]
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"event_name\": \"Summer Music Festival\",\n\t\"description\": \"An outdoor music festival featuring local and international artists\",\n\t\"event_date\": \"2024-07-15\",\n\t\"event_time\": \"18:00\",\n\t\"pricing\": {\n\t\t\"tiers\": [\n\t\t\t{\"name\": \"General Admission\", \"price\": 50},\n\t\t\t{\"name\": \"VIP\", \"price\": 150}\n\t\t]\n\t},\n\t\"venue_type\": \"outdoor\"\n}"
+      },
+      "id": "141883ce-4740-4ee8-bc44-76f49b078e80",
+      "name": "Event Details Schema Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        856,
+        1168
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "id",
+          "value": "gpt-4o"
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "id": "aa12f3fa-679b-4ace-be72-55551c33ee3a",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        728,
+        1168
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body.ai_prompt }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are an event planning assistant. Generate complete and realistic event details based on user prompts. Always include event name, detailed description, appropriate date and time, pricing tiers (at least 2-3 tiers), and venue type (seated or non_seated)."
+        }
+      },
+      "id": "da450458-233a-4d5f-8377-1f33af862f42",
+      "name": "AI Generate Event Details",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        720,
+        944
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "1249bc3b-68d1-4b54-b533-cee11e3aad85",
+      "name": "Merge Event Data",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1072,
+        796
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.venue_type }}",
+                    "rightValue": "seated",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Seated Event"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.venue_type }}",
+                    "rightValue": "non_seated",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Non-Seated Event"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1e46ec34-deee-47f4-b9fe-db83fc04f317",
+      "name": "Route by Venue Type",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1296,
+        796
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-1.5-pro",
+        "options": {}
+      },
+      "id": "872c4b8e-8659-4ecf-90e5-b53e5efaf62b",
+      "name": "Gemini Vision Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1752,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"entrances\": [],\n\t\"exits\": [],\n\t\"important_areas\": [],\n\t\"capacity\": 0,\n\t\"layout_description\": \"\"\n}"
+      },
+      "id": "402f1888-f048-4529-a1d5-106ac1e349f0",
+      "name": "Venue Map Schema Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1880,
+        576
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ 'Analyze this venue blueprint and provide: entrances with locations, exits with locations, important areas (stage, bars, restrooms, etc.), estimated capacity, and overall layout description. Image data: ' + JSON.stringify($json.body.blueprint_image) }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a venue layout analysis expert. Analyze blueprint images and extract structural information including entrances, exits, important areas, capacity estimates, and layout descriptions. Provide precise locations and coordinates when possible."
+        }
+      },
+      "id": "d3c737ac-9b3b-4816-81cf-9888d47492d2",
+      "name": "AI Analyze Blueprint Image",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1744,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const venueData = $input.first().json;\n\nconst venueMap = {\n  type: 'non_seated',\n  entrances: venueData.entrances || [],\n  exits: venueData.exits || [],\n  important_areas: venueData.important_areas || [],\n  capacity: venueData.capacity || 0,\n  layout_description: venueData.layout_description || '',\n  created_at: new Date().toISOString()\n};\n\nreturn [{ json: venueMap }];"
+      },
+      "id": "ca316222-f49e-4bfa-9da9-0725f12310e0",
+      "name": "Generate Venue Map JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2096,
+        456
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.hall_shape }}",
+                    "rightValue": "circular",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Circular"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.hall_shape }}",
+                    "rightValue": "square",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Square"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.hall_shape }}",
+                    "rightValue": "rectangle",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Rectangle"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.hall_shape }}",
+                    "rightValue": "two_partition",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Two-Partition"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0c801b6c-1063-433c-a66d-89f15878471d",
+      "name": "Route by Hall Shape",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        1520,
+        1008
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const seatConfig = $input.first().json.body.seat_config;\nconst rows = seatConfig.rows || 10;\nconst seatsPerRow = seatConfig.seats_per_row || 20;\n\nconst seats = [];\nfor (let row = 1; row <= rows; row++) {\n  for (let seat = 1; seat <= seatsPerRow; seat++) {\n    seats.push({\n      row: row,\n      seat_number: seat,\n      section: Math.ceil(row / (rows / 4)),\n      status: 'available',\n      price_tier: row <= rows / 3 ? 'premium' : row <= 2 * rows / 3 ? 'standard' : 'economy'\n    });\n  }\n}\n\nreturn [{ json: { type: 'seated', shape: 'circular', seats: seats, total_seats: seats.length } }];"
+      },
+      "id": "0bc96f8c-9435-4b59-adba-c63e3c6b1297",
+      "name": "Generate Circular Seat Map",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1808,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const seatConfig = $input.first().json.body.seat_config;\nconst rows = seatConfig.rows || 15;\nconst seatsPerRow = seatConfig.seats_per_row || 15;\n\nconst seats = [];\nfor (let row = 1; row <= rows; row++) {\n  for (let seat = 1; seat <= seatsPerRow; seat++) {\n    seats.push({\n      row: row,\n      seat_number: seat,\n      section: 'main',\n      status: 'available',\n      price_tier: row <= rows / 3 ? 'premium' : row <= 2 * rows / 3 ? 'standard' : 'economy'\n    });\n  }\n}\n\nreturn [{ json: { type: 'seated', shape: 'square', seats: seats, total_seats: seats.length } }];"
+      },
+      "id": "e82533da-d39f-4cbb-a24a-9d2af49e0261",
+      "name": "Generate Square Seat Map",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1808,
+        944
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const seatConfig = $input.first().json.body.seat_config;\nconst rows = seatConfig.rows || 20;\nconst seatsPerRow = seatConfig.seats_per_row || 25;\n\nconst seats = [];\nfor (let row = 1; row <= rows; row++) {\n  for (let seat = 1; seat <= seatsPerRow; seat++) {\n    seats.push({\n      row: row,\n      seat_number: seat,\n      section: 'main',\n      status: 'available',\n      price_tier: row <= rows / 3 ? 'premium' : row <= 2 * rows / 3 ? 'standard' : 'economy'\n    });\n  }\n}\n\nreturn [{ json: { type: 'seated', shape: 'rectangle', seats: seats, total_seats: seats.length } }];"
+      },
+      "id": "5cc36287-66dd-43d8-a5b4-87349fc6a2ca",
+      "name": "Generate Rectangle Seat Map",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1808,
+        1136
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const seatConfig = $input.first().json.body.seat_config;\nconst partition1Rows = seatConfig.partition1_rows || 10;\nconst partition1Seats = seatConfig.partition1_seats || 15;\nconst partition2Rows = seatConfig.partition2_rows || 10;\nconst partition2Seats = seatConfig.partition2_seats || 15;\n\nconst seats = [];\n\n// Partition 1\nfor (let row = 1; row <= partition1Rows; row++) {\n  for (let seat = 1; seat <= partition1Seats; seat++) {\n    seats.push({\n      row: row,\n      seat_number: seat,\n      section: 'partition_1',\n      status: 'available',\n      price_tier: 'premium'\n    });\n  }\n}\n\n// Partition 2\nfor (let row = 1; row <= partition2Rows; row++) {\n  for (let seat = 1; seat <= partition2Seats; seat++) {\n    seats.push({\n      row: row,\n      seat_number: seat,\n      section: 'partition_2',\n      status: 'available',\n      price_tier: 'standard'\n    });\n  }\n}\n\nreturn [{ json: { type: 'seated', shape: 'two_partition', seats: seats, total_seats: seats.length } }];"
+      },
+      "id": "afcf6508-88e9-4980-9d46-591bd2c19eb9",
+      "name": "Generate Two-Partition Seat Map",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1808,
+        1328
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "37b80b30-4325-428e-a5be-5f1a00209968",
+      "name": "Merge Seat Maps",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2096,
+        1040
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2e0388c3-f3f5-4263-97ce-a0cfc81c276e",
+      "name": "Merge Venue Configurations",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2320,
+        796
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "name",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "name",
+          "value": "events"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "event_name": "={{ $json.event_name }}",
+            "description": "={{ $json.description }}",
+            "event_date": "={{ $json.event_date }}",
+            "event_time": "={{ $json.event_time }}",
+            "pricing": "={{ $json.pricing }}",
+            "venue_type": "={{ $json.venue_type }}",
+            "venue_config": "={{ $json.venue_config }}",
+            "organizer_id": "={{ $json.organizer_id }}",
+            "status": "live",
+            "created_at": "={{ new Date().toISOString() }}"
+          },
+          "matchingColumns": [
+            "event_name",
+            "description",
+            "event_date",
+            "event_time",
+            "pricing",
+            "venue_type",
+            "venue_config",
+            "organizer_id",
+            "status",
+            "created_at"
+          ],
+          "schema": [
+            {
+              "id": "event_name",
+              "displayName": "event_name",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "event_date",
+              "displayName": "event_date",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "event_time",
+              "displayName": "event_time",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "pricing",
+              "displayName": "pricing",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "venue_type",
+              "displayName": "venue_type",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "venue_config",
+              "displayName": "venue_config",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "organizer_id",
+              "displayName": "organizer_id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ea9f5067-fc6f-4777-aa57-6d2ed757194c",
+      "name": "Save Event to Database",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        2544,
+        796
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, message: 'Event created and live', event_id: $json.id, event_url: 'https://yourdomain.com/event/' + $json.id } }}",
+        "options": {}
+      },
+      "id": "07a13d57-c845-4ccb-bbf9-9e54cf3fcfe1",
+      "name": "Return Event Created",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2768,
+        796
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "book-ticket",
+        "responseMode": "lastNode",
+        "options": {
+          "responseCode": {
+            "values": {}
+          }
+        }
+      },
+      "id": "67aa7405-e69b-4423-b5b6-5fb17ac886a8",
+      "name": "API - Book Ticket",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        272,
+        1744
+      ],
+      "webhookId": "375af5e1-3dfe-456d-8ec7-77b1e7f8d4d6"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "name",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "name",
+          "value": "events"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $json.body.event_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "57b26abc-b109-4608-9004-ac0261e48f87",
+      "name": "Check Event Availability",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        496,
+        1744
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "id-1",
+              "leftValue": "={{ $json.venue_config.seats.filter(s => s.status === 'available').length }}",
+              "rightValue": "0",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "ef7a8e46-1a0c-4b97-807f-de25cfd1a960",
+      "name": "Check Seats Available",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        720,
+        1744
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "charge",
+        "operation": "create",
+        "customerId": "<__PLACEHOLDER_VALUE__Customer ID from Stripe__>",
+        "amount": "={{ $('API - Book Ticket').item.json.body.amount * 100 }}",
+        "currency": "usd",
+        "source": "<__PLACEHOLDER_VALUE__Payment Source ID__>",
+        "additionalFields": {
+          "description": "={{ 'Ticket booking for event: ' + $('Check Event Availability').item.json.event_name }}"
+        }
+      },
+      "id": "81a28670-6b71-4ea7-be85-efbd2ed7c082",
+      "name": "Process Payment",
+      "type": "n8n-nodes-base.stripe",
+      "typeVersion": 1,
+      "position": [
+        944,
+        1648
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "id-1",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "succeeded",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "1f62b3ab-063e-4482-91c9-842fd9088a81",
+      "name": "Check Payment Success",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1168,
+        1648
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "name",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "name",
+          "value": "bookings"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "event_id": "={{ $json.event_id }}",
+            "customer_name": "={{ $json.customer_name }}",
+            "customer_email": "={{ $json.customer_email }}",
+            "seat_numbers": "={{ $json.seat_numbers }}",
+            "amount_paid": "={{ $json.amount_paid }}",
+            "payment_id": "={{ $json.payment_id }}",
+            "booking_date": "={{ $json.booking_date }}",
+            "status": "={{ $json.status }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "event_id",
+              "displayName": "event_id",
+              "required": false,
+              "defaultMatch": true,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "customer_name",
+              "displayName": "customer_name",
+              "required": false,
+              "defaultMatch": true,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "customer_email",
+              "displayName": "customer_email",
+              "required": false,
+              "defaultMatch": true,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "seat_numbers",
+              "displayName": "seat_numbers",
+              "required": false,
+              "defaultMatch": true,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "amount_paid",
+              "displayName": "amount_paid",
+              "required": false,
+              "defaultMatch": true,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "payment_id",
+              "displayName": "payment_id",
+              "required": false,
+              "defaultMatch": true,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "booking_date",
+              "displayName": "booking_date",
+              "required": false,
+              "defaultMatch": true,
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": true,
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8783ee00-7fea-4c02-a3d1-856c44ae5e03",
+      "name": "Create Booking Record",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1392,
+        1552
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=UPDATE events SET venue_config = jsonb_set(venue_config, '{seats}', (SELECT jsonb_agg(CASE WHEN seat->>'seat_number' = ANY(ARRAY[={{ $('API - Book Ticket').item.json.body.seat_numbers }}]) THEN jsonb_set(seat, '{status}', '\"booked\"') ELSE seat END) FROM jsonb_array_elements(venue_config->'seats') seat)) WHERE id = ={{ $('API - Book Ticket').item.json.body.event_id }}",
+        "options": {}
+      },
+      "id": "38421cdf-797b-48fe-a6e3-21881d5bcff3",
+      "name": "Update Seat Availability",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1616,
+        1552
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "id-1",
+              "name": "booking_id",
+              "value": "={{ $('Create Booking Record').item.json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "id-2",
+              "name": "event_name",
+              "value": "={{ $('Check Event Availability').item.json.event_name }}",
+              "type": "string"
+            },
+            {
+              "id": "id-3",
+              "name": "customer_name",
+              "value": "={{ $('API - Book Ticket').item.json.body.customer_name }}",
+              "type": "string"
+            },
+            {
+              "id": "id-4",
+              "name": "seat_numbers",
+              "value": "={{ $('API - Book Ticket').item.json.body.seat_numbers }}",
+              "type": "string"
+            },
+            {
+              "id": "id-5",
+              "name": "amount_paid",
+              "value": "={{ $('API - Book Ticket').item.json.body.amount }}",
+              "type": "number"
+            },
+            {
+              "id": "id-6",
+              "name": "booking_date",
+              "value": "={{ new Date().toISOString() }}",
+              "type": "string"
+            },
+            {
+              "id": "id-7",
+              "name": "qr_code",
+              "value": "={{ 'QR_' + $('Create Booking Record').item.json.id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "32fabb39-579f-49ee-80dc-913adc8247f7",
+      "name": "Format Ticket Confirmation",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1840,
+        1552
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, message: 'Ticket booked successfully', booking: $json } }}",
+        "options": {}
+      },
+      "id": "fef96865-5fd9-4f35-8a8a-9e86bc4d5e86",
+      "name": "Return Booking Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        2064,
+        1552
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": false,\n  \"message\": \"Payment failed. Please try again.\"\n}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "b7574e92-3df8-4fa2-9743-bed6e05ca923",
+      "name": "Return Payment Failed",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        1392,
+        1744
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": false,\n  \"message\": \"No seats available for this event.\"\n}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "cf5b82ff-de5e-4225-bd49-ff6f2db73edd",
+      "name": "Return No Seats Available",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        944,
+        1840
+      ]
+    },
+    {
+      "parameters": {
+        "path": "dashboard/:organizer_id",
+        "responseMode": "lastNode",
+        "options": {
+          "responseCode": {
+            "values": {}
+          }
+        }
+      },
+      "id": "d782926f-939c-4475-abb2-80d68914b365",
+      "name": "API - Get Dashboard Data",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        272,
+        2256
+      ],
+      "webhookId": "c95a2764-2ba6-4775-927c-cfefb8af4cf7"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "name",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "name",
+          "value": "events"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "organizer_id",
+              "value": "={{ $json.params.organizer_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c32f472d-4bb6-4fd5-8808-e18c1cd645fa",
+      "name": "Get Event Statistics",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        496,
+        2064
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=SELECT b.* FROM bookings b JOIN events e ON b.event_id = e.id WHERE e.organizer_id = {{ $('API - Get Dashboard Data').item.json.params.organizer_id }}",
+        "options": {}
+      },
+      "id": "37f53aaf-e291-43b3-9005-0437da66a073",
+      "name": "Get Booking Details",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        496,
+        2256
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=SELECT SUM(b.amount_paid) as total_revenue, COUNT(b.id) as total_bookings FROM bookings b JOIN events e ON b.event_id = e.id WHERE e.organizer_id = {{ $('API - Get Dashboard Data').item.json.params.organizer_id }}",
+        "options": {}
+      },
+      "id": "00a0255a-5db1-4217-a8cc-8235c08f04eb",
+      "name": "Calculate Revenue",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        496,
+        2448
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const events = $input.all()[0].map(item => item.json);\nconst bookings = $input.all()[1].map(item => item.json);\nconst revenue = $input.all()[2][0].json;\n\nconst dashboard = {\n  total_events: events.length,\n  live_events: events.filter(e => e.status === 'live').length,\n  total_revenue: parseFloat(revenue.total_revenue || 0),\n  total_bookings: parseInt(revenue.total_bookings || 0),\n  events: events.map(e => ({\n    event_id: e.id,\n    event_name: e.event_name,\n    event_date: e.event_date,\n    total_seats: e.venue_config?.total_seats || 0,\n    booked_seats: e.venue_config?.seats?.filter(s => s.status === 'booked').length || 0,\n    revenue: bookings.filter(b => b.event_id === e.id).reduce((sum, b) => sum + parseFloat(b.amount_paid), 0)\n  })),\n  recent_bookings: bookings.slice(0, 10)\n};\n\nreturn [{ json: dashboard }];"
+      },
+      "id": "25327d9f-0dc5-4b87-823d-538fc9b2f8ed",
+      "name": "Calculate Dashboard Metrics",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        2256
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { success: true, dashboard: $json } }}",
+        "options": {}
+      },
+      "id": "7df7b816-a663-4b2a-8fdf-0f47ea7ccdc3",
+      "name": "Return Dashboard Data",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        944,
+        2256
+      ]
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        2720,
+        2720
+      ],
+      "typeVersion": 1,
+      "id": "4e874bb2-15d2-4c34-af21-b87a114f85ee",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "API - Event Organizer Registration": {
+      "main": [
+        [
+          {
+            "node": "Workflow Configuration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Workflow Configuration": {
+      "main": [
+        [
+          {
+            "node": "Save Organizer Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Organizer Profile": {
+      "main": [
+        [
+          {
+            "node": "Return Registration Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API - Create Event": {
+      "main": [
+        [
+          {
+            "node": "Route by Creation Method",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Creation Method": {
+      "main": [
+        [
+          {
+            "node": "Format Manual Event Data",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Generate Event Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Event Details Schema Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Generate Event Details",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Generate Event Details",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Manual Event Data": {
+      "main": [
+        [
+          {
+            "node": "Merge Event Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Generate Event Details": {
+      "main": [
+        [
+          {
+            "node": "Merge Event Data",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Event Data": {
+      "main": [
+        [
+          {
+            "node": "Route by Venue Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Venue Map Schema Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Analyze Blueprint Image",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Vision Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Analyze Blueprint Image",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Venue Type": {
+      "main": [
+        [
+          {
+            "node": "Route by Hall Shape",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "AI Analyze Blueprint Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Analyze Blueprint Image": {
+      "main": [
+        [
+          {
+            "node": "Generate Venue Map JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Hall Shape": {
+      "main": [
+        [
+          {
+            "node": "Generate Circular Seat Map",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Generate Square Seat Map",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Generate Rectangle Seat Map",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Generate Two-Partition Seat Map",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Circular Seat Map": {
+      "main": [
+        [
+          {
+            "node": "Merge Seat Maps",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Square Seat Map": {
+      "main": [
+        [
+          {
+            "node": "Merge Seat Maps",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Generate Rectangle Seat Map": {
+      "main": [
+        [
+          {
+            "node": "Merge Seat Maps",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Two-Partition Seat Map": {
+      "main": [
+        [
+          {
+            "node": "Merge Seat Maps",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Seat Maps": {
+      "main": [
+        [
+          {
+            "node": "Merge Venue Configurations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Venue Map JSON": {
+      "main": [
+        [
+          {
+            "node": "Merge Venue Configurations",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Venue Configurations": {
+      "main": [
+        [
+          {
+            "node": "Save Event to Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Event to Database": {
+      "main": [
+        [
+          {
+            "node": "Return Event Created",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API - Book Ticket": {
+      "main": [
+        [
+          {
+            "node": "Check Event Availability",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Event Availability": {
+      "main": [
+        [
+          {
+            "node": "Check Seats Available",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Seats Available": {
+      "main": [
+        [
+          {
+            "node": "Process Payment",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return No Seats Available",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Payment": {
+      "main": [
+        [
+          {
+            "node": "Check Payment Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Payment Success": {
+      "main": [
+        [
+          {
+            "node": "Create Booking Record",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Return Payment Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Booking Record": {
+      "main": [
+        [
+          {
+            "node": "Update Seat Availability",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Seat Availability": {
+      "main": [
+        [
+          {
+            "node": "Format Ticket Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Ticket Confirmation": {
+      "main": [
+        [
+          {
+            "node": "Return Booking Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API - Get Dashboard Data": {
+      "main": [
+        [
+          {
+            "node": "Get Event Statistics",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Booking Details",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Calculate Revenue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Event Statistics": {
+      "main": [
+        [
+          {
+            "node": "Calculate Dashboard Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Revenue": {
+      "main": [
+        [
+          {
+            "node": "Calculate Dashboard Metrics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Dashboard Metrics": {
+      "main": [
+        [
+          {
+            "node": "Return Dashboard Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "8415806b-f8e8-401a-9bf0-a6b076b87570",
+  "meta": {
+    "instanceId": "a3fe1c86e5dad798c48c829759b87db7f4774ae75aa5e741dddee2da3ba3d744"
+  },
+  "id": "KgmYfl-bj2PWXRf5SMVwp",
+  "tags": []
+}
